@@ -25,6 +25,7 @@ steps:
   inputs:
     command: 'build'
     projects: './RPS_GameMvc/RPS_GameMvc.csproj'
+    arguments: '--configuration $(buildConfiguration)'
   
 - task: SonarCloudAnalyze@1
 
