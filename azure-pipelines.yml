@@ -20,6 +20,14 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+  
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'RPSGamePipelineDemo'
+    organization: 'kevinmora2016'
+    scannerMode: 'MSBuild'
+    projectKey: 'kevinmora2016_MVC_PipelinesDemo'
+    projectName: 'MVC_PipelinesDemo'
 
 - task: DotNetCoreCLI@2
   inputs:
