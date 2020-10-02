@@ -49,7 +49,7 @@ steps:
     azureSubscription: 'Azure subscription 1(1f6e0751-58c4-47e2-8b74-0ea0992a36d6)'
     appType: 'webApp'
     appName: 'RockPaperScissorsDemoSiteMora'
-    package: '$Build.ArtifactStagingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
     zipAfterPublish: true
 
