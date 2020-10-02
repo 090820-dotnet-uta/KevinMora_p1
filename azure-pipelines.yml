@@ -60,3 +60,4 @@ steps:
     deploymentMethod: 'auto'
     zipAfterPublish: true
 
+
