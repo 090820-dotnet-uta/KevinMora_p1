@@ -21,7 +21,7 @@ namespace P1.Controllers
         {
             _context = context;
             _cache = cache;
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: CustomerHomepage
@@ -34,10 +34,10 @@ namespace P1.Controllers
 
         public IActionResult SearchCustomer(Customer customer)
         {
-            if (DatabaseControl.CustomerExists(customer))
+            if (DatabaseControl.CustomerExists(customer, _context))
             {
-                List<Customer> customers = DatabaseControl.CustomersWithName(customer);
-                List<UserAccount> accounts = DatabaseControl.Accounts(customers);
+                List<Customer> customers = DatabaseControl.CustomersWithName(customer, _context);
+                List<UserAccount> accounts = DatabaseControl.Accounts(customers, _context);
                 return View("CustomersWithName", accounts);
             }
             else

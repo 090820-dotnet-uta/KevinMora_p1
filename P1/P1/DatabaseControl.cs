@@ -13,16 +13,16 @@ namespace P1
 {
     public class DatabaseControl
     {
-        private static P1Context _context;
+        /*private static P1Context _context;
         public static void SetContext(P1Context context)
         {
             _context = context;
-        }
+        }*/
         /// <summary>
         /// Creates a new entries in the Customers Table and UserAccounts Table for new Users
         /// </summary>
         /// <param name="Account"></param>
-        public static void RegisterAccount(UserAccount Account, Customer c)
+        public static void RegisterAccount(UserAccount Account, Customer c, P1Context _context)
         {
 
             var DB = _context;
@@ -31,7 +31,7 @@ namespace P1
             UserAccountDAO.AddUserAccount(Account, DB);
         }
 
-        internal static bool CustomerExists(Customer customer)
+        public static bool CustomerExists(Customer customer, P1Context _context)
         {
             bool exists = false;
             List<Customer> customers = new List<Customer>();
@@ -45,7 +45,7 @@ namespace P1
             return exists;
         }
 
-        internal static List<Customer> CustomersWithName(Customer customer)
+        internal static List<Customer> CustomersWithName(Customer customer, P1Context _context)
         {
 
             List<Customer> customers = new List<Customer>();
@@ -55,7 +55,7 @@ namespace P1
             return customers;
         }
 
-        internal static List<UserAccount> Accounts(List<Customer> customers)
+        internal static List<UserAccount> Accounts(List<Customer> customers, P1Context _context)
         {
             List<UserAccount> accounts = new List<UserAccount>();
             var DB = _context;
@@ -69,7 +69,7 @@ namespace P1
             return accounts;
         }
 
-        public static bool AccountExists(UserAccount Account)
+        public static bool AccountExists(UserAccount Account, P1Context _context)
         {
             bool exists;
             var DB = _context;
@@ -78,7 +78,7 @@ namespace P1
             return exists;
         }
 
-        public static bool AccountExists(string username)
+        public static bool AccountExists(string username, P1Context _context)
         {
             bool exists;
             var DB = _context;
@@ -92,7 +92,7 @@ namespace P1
         /// </summary>
         /// <param name="Account"></param>
         /// <returns>A reference to the Current Customer</returns>
-        internal static Customer GetCurrentCustomer(UserAccount Account)
+        internal static Customer GetCurrentCustomer(UserAccount Account, P1Context _context)
         {
             Customer CurrentCustomer;
             var DB = _context;
@@ -122,14 +122,12 @@ namespace P1
             return CurrentCustomer;
         }
 
-
-
         /// <summary>
         /// Takes in the Login Information and verifies that the user exits
         /// </summary>
         /// <param name="Account"></param>
         /// <returns>True if user exists, false if username or password doesn't match</returns>
-        internal static bool LoginSuccesful(UserAccount Account)
+        internal static bool LoginSuccesful(UserAccount Account, P1Context _context)
         {
             bool success = false;
             var DB = _context;
@@ -146,7 +144,7 @@ namespace P1
             return success;
         }
 
-        internal static List<Customer> GetAllCustomers()
+        /*internal static List<Customer> GetAllCustomers(P1Context _context)
         {
             List<Customer> CustomerList = new List<Customer>();
             var DB = _context;
@@ -155,19 +153,19 @@ namespace P1
             return CustomerList;
         }
 
-        internal static List<Product> GetAllProducts()
+        internal static List<Product> GetAllProducts(P1Context _context)
         {
             List<Product> ProductList;
             var DB = _context;
             ProductDAO.LoadProductsList(DB);
             ProductList = DB.ProductsList;
             return ProductList;
-        }
+        }*/
 
-        internal static ProductInStock GetProductInStock(int id, Location location)
+        internal static ProductInStock GetProductInStock(int id, Location location, P1Context _context)
         {
-            int max = FindNumInStockAtLocation(id, location);
-            Product p = GetProduct(id);
+            int max = FindNumInStockAtLocation(id, location, _context);
+            Product p = GetProduct(id, _context);
             ProductInStock productInStock = new ProductInStock
             {
                 ProductID = p.ProductID,
@@ -181,7 +179,7 @@ namespace P1
             return productInStock;
         }
 
-        internal static List<Product> GetAllProductsOfType(string type)
+        internal static List<Product> GetAllProductsOfType(string type, P1Context _context)
         {
             List<Product> ProductList = new List<Product>();
             var DB = _context;
@@ -196,16 +194,16 @@ namespace P1
             return ProductList;
         }
 
-        internal static List<Location> GetAllLocations()
+        /*internal static List<Location> GetAllLocations(P1Context _context)
         {
             List<Location> LocationList;
             var DB = _context;
             LocationDAO.LoadLocationsList(DB);
             LocationList = DB.LocationList;
             return LocationList;
-        }
+        }*/
 
-        internal static Location GetLocation(int LocationID)
+        public static Location GetLocation(int LocationID, P1Context _context)
         {
             Location location = new Location();
             var DB = _context;
@@ -221,7 +219,7 @@ namespace P1
             return location;
         }
 
-        internal static Shipping GetAddress(int ShippingID)
+        public static Shipping GetAddress(int ShippingID, P1Context _context)
         {
             Shipping addy = new Shipping();
             var DB = _context;
@@ -237,7 +235,7 @@ namespace P1
             return addy;
         }
 
-        internal static Billing GetCard(int BillingID)
+        public static Billing GetCard(int BillingID, P1Context _context)
         {
             Billing card = new Billing();
             var DB = _context;
@@ -253,7 +251,7 @@ namespace P1
             return card;
         }
 
-        internal static Location GetOrderLocation(Order o)
+        /*internal static Location GetOrderLocation(Order o, P1Context _context)
         {
             Location Location;
             var DB = _context;
@@ -262,7 +260,7 @@ namespace P1
             return Location;
         }
 
-        internal static List<int> FindLocationIDsWithProduct(Product ProductToBuy)
+        internal static List<int> FindLocationIDsWithProduct(Product ProductToBuy, P1Context _context)
         {
             List<int> LocationIDs = new List<int>();
             var DB = _context;
@@ -275,9 +273,9 @@ namespace P1
                 }
             }
             return LocationIDs;
-        }
+        }*/
 
-        internal static List<Location> FindLocationsWithProduct(int ProductID)
+        internal static List<Location> FindLocationsWithProduct(int ProductID, P1Context _context)
         {
             List<int> LocationIDs = new List<int>();
             var DB = _context;
@@ -289,11 +287,11 @@ namespace P1
                     LocationIDs.Add(lp.LocationID);
                 }
             }
-            List<Location> StoreOptions = FindLocationsWithProduct(LocationIDs);
+            List<Location> StoreOptions = FindLocationsWithProduct(LocationIDs, _context);
             return StoreOptions;
         }
 
-        internal static List<Location> FindLocationsWithProduct(Product ProductToBuy, List<int> LocationIDs)
+        internal static List<Location> FindLocationsWithProduct(Product ProductToBuy, List<int> LocationIDs, P1Context _context)
         {
             List<Location> StoreOptions = new List<Location>();
 
@@ -312,7 +310,7 @@ namespace P1
             return StoreOptions;
         }
 
-        internal static Product GetProduct(int ID)
+        internal static Product GetProduct(int ID, P1Context _context)
         {
             Product product = new Product();
             var DB = _context;
@@ -328,7 +326,7 @@ namespace P1
             return product;
         }
 
-        internal static List<Location> FindLocationsWithProduct(List<int> LocationIDs)
+        internal static List<Location> FindLocationsWithProduct(List<int> LocationIDs, P1Context _context)
         {
             List<Location> StoreOptions = new List<Location>();
 
@@ -347,12 +345,12 @@ namespace P1
             return StoreOptions;
         }
 
-        internal static List<ProductInStock> GetProductsInStockAtLocation(List<Product> Products, Location Location)
+        internal static List<ProductInStock> GetProductsInStockAtLocation(List<Product> Products, Location Location, P1Context _context)
         {
             List<ProductInStock> prodsInStock = new List<ProductInStock>();
             foreach(Product p in Products)
             {
-                int max = FindNumInStockAtLocation(p, Location);
+                int max = FindNumInStockAtLocation(p, Location, _context);
                 ProductInStock prodInStock = new ProductInStock
                 {
                     ProductID = p.ProductID,
@@ -369,7 +367,7 @@ namespace P1
 
         }
 
-        internal static int FindNumInStockAtLocation(Product ProductToBuy, Location CurrentLocation)
+        internal static int FindNumInStockAtLocation(Product ProductToBuy, Location CurrentLocation, P1Context _context)
         {
             int InStock = 0;
             var DB = _context;
@@ -385,7 +383,7 @@ namespace P1
             return InStock;
         }
 
-        internal static int FindNumInStockAtLocation(int ProductID, Location CurrentLocation)
+        internal static int FindNumInStockAtLocation(int ProductID, Location CurrentLocation, P1Context _context)
         {
             int InStock = 0;
             var DB = _context;
@@ -401,7 +399,7 @@ namespace P1
             return InStock;
         }
 
-        internal static List<Product> FindProductsOfTypeFromStore(string Type, Location CurrentLocation)
+        internal static List<Product> FindProductsOfTypeFromStore(string Type, Location CurrentLocation, P1Context _context)
         {
             List<Product> ProductsOfType = new List<Product>();
 
@@ -425,7 +423,7 @@ namespace P1
             return ProductsOfType;
         }
 
-        internal static void AddNewCardInformationToUser(Billing CardInfoEntered, Customer CurrentCustomer)
+        internal static void AddNewCardInformationToUser(Billing CardInfoEntered, Customer CurrentCustomer, P1Context _context)
         {
             var DB = _context;
             BillingDAO.AddBilling(CardInfoEntered, DB);
@@ -437,7 +435,7 @@ namespace P1
             CustomerBillingDAO.AddCustomerBilling(CB, DB);
         }
 
-        internal static void AddNewShippingInformationToUser(Shipping address, Customer customer)
+        internal static void AddNewShippingInformationToUser(Shipping address, Customer customer, P1Context _context)
         {
             var DB = _context;
             ShippingDAO.AddShippingInformation(address, DB);
@@ -449,7 +447,7 @@ namespace P1
             CustomerShippingDAO.AddCustomerShipping(CS, DB);
         }
 
-        internal static void AddNewShippingInformationToUser(Billing card, Customer customer)
+        internal static void AddNewShippingInformationToUser(Billing card, Customer customer, P1Context _context)
         {
             Shipping S = new Shipping
             {
@@ -470,7 +468,7 @@ namespace P1
             CustomerShippingDAO.AddCustomerShipping(CS, DB);
         }
 
-        internal static List<Shipping> GetShippingAddresssesOnFileForCustomer(Customer customer)
+        internal static List<Shipping> GetShippingAddresssesOnFileForCustomer(Customer customer, P1Context _context)
         {
             List<Shipping> ships = new List<Shipping>();
             var DB = _context;
@@ -493,7 +491,7 @@ namespace P1
             return ships;
         }
 
-        internal static List<Billing> GetCardsOnFileForCustomer(Customer CurrentCustomer)
+        internal static List<Billing> GetCardsOnFileForCustomer(Customer CurrentCustomer, P1Context _context)
         {
             List<Billing> CardOptions = new List<Billing>();
 
@@ -515,7 +513,7 @@ namespace P1
             return CardOptions;
         }
 
-        internal static void UpdateQuantity(Product p, int quanity, Location location)
+        internal static void UpdateQuantity(Product p, int quanity, Location location, P1Context _context)
         {
             var DB = _context;
             LocationProductsDAO.LoadLocationProductsList(DB);
@@ -530,7 +528,7 @@ namespace P1
             }
         }
 
-        internal static List<Order> GetOrdersInfoFromLocation(Location CurrentLocation)
+        internal static List<Order> GetOrdersInfoFromLocation(Location CurrentLocation, P1Context _context)
         {
             List<Order> OrdersFromLocation = new List<Order>();
 
@@ -575,7 +573,7 @@ namespace P1
             return OrdersFromLocation;
         }
 
-        internal static List<Order> GetPastOrdersFromCustomer(Customer customer)
+        internal static List<Order> GetPastOrdersFromCustomer(Customer customer, P1Context _context)
         {
             List<Order> OrdersByCustomer = new List<Order>();
 
@@ -623,12 +621,12 @@ namespace P1
             return OrdersByCustomer;
         }
 
-        internal static Order GetOrder(int ID, bool inStore)
+        internal static Order GetOrder(int ID, bool inStore, P1Context _context)
         {
             Order order = new Order();
             if (inStore)
             {
-                List<Order> orders = GetOrdersInfoFromLocation(Storage.GetLocation());
+                List<Order> orders = GetOrdersInfoFromLocation(Storage.GetLocation(), _context);
                 foreach (Order o in orders)
                 {
                     if (o.OrderID == ID)
@@ -641,7 +639,7 @@ namespace P1
             }
             else
             {
-                List<Order> orders = GetPastOrdersFromCustomer(Storage.GetCustomer());
+                List<Order> orders = GetPastOrdersFromCustomer(Storage.GetCustomer(), _context);
                 foreach (Order o in orders)
                 {
                     if (o.OrderID == ID)
@@ -654,7 +652,7 @@ namespace P1
             return order;
         }
 
-        internal static void PlaceOrder(List<ProductInStock> ShoppingCart, Billing BillingInfo, Shipping ShippingInfo, Customer CurrentCustomer, Location CurrentLocation)
+        internal static void PlaceOrder(List<ProductInStock> ShoppingCart, Billing BillingInfo, Shipping ShippingInfo, Customer CurrentCustomer, Location CurrentLocation, P1Context _context)
         {
             DateTime now = System.DateTime.Now;
             var DB = _context;

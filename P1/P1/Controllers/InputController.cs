@@ -9,6 +9,12 @@ namespace P1.Controllers
 {
     public class InputController : Controller
     {
+        private P1Context _context;
+
+        public InputController(P1Context context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -17,7 +23,7 @@ namespace P1.Controllers
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerifyUsername(string username)
         {
-            if (!DatabaseControl.AccountExists(username))
+            if (!DatabaseControl.AccountExists(username, _context))
             {
                 return Json($"Username {username} is already in use.");
             }

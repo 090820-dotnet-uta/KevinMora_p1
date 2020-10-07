@@ -20,7 +20,7 @@ namespace P1.Controllers
         {
             _context = context;
             _currentLocation = new Location();
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: Locations
@@ -31,7 +31,7 @@ namespace P1.Controllers
 
         public IActionResult GetLocation(int ID)
         {
-            _currentLocation = DatabaseControl.GetLocation(ID);
+            _currentLocation = DatabaseControl.GetLocation(ID, _context);
             Storage.SetLocation(_currentLocation);
 /*            if(Storage.GetProductToBuy() != null)
             {
@@ -77,7 +77,7 @@ namespace P1.Controllers
             }
             else
             {
-                List<Billing> cardsOnFile = DatabaseControl.GetCardsOnFileForCustomer(Storage.GetCustomer());
+                List<Billing> cardsOnFile = DatabaseControl.GetCardsOnFileForCustomer(Storage.GetCustomer(), _context);
                 return View("../Billing/BillingOptions", cardsOnFile);
             }
         }
@@ -117,9 +117,9 @@ namespace P1.Controllers
 
         public IActionResult GetAddToCart(int ID)
         {
-            Location _currentLocation = DatabaseControl.GetLocation(ID);
+            Location _currentLocation = DatabaseControl.GetLocation(ID, _context);
             Storage.SetLocation(_currentLocation);
-            ProductInStock productInStock = DatabaseControl.GetProductInStock(Storage.GetProduct().ProductID, _currentLocation);
+            ProductInStock productInStock = DatabaseControl.GetProductInStock(Storage.GetProduct().ProductID, _currentLocation, _context);
             Storage.SetProductToBuy(productInStock);
             return View("AddToCart", productInStock); 
         }
@@ -127,7 +127,7 @@ namespace P1.Controllers
         public IActionResult AddToCart(int id)
         {
             _currentLocation = Storage.GetLocation();
-            ProductInStock productInStock = DatabaseControl.GetProductInStock(id, _currentLocation);
+            ProductInStock productInStock = DatabaseControl.GetProductInStock(id, _currentLocation, _context);
             if (Storage.ShoppingCartHas(productInStock))
             {
                 return View("ProductAlreadyInCart", productInStock);
@@ -143,7 +143,7 @@ namespace P1.Controllers
         {
             int id = Storage.GetProductToBuy().ProductID;
             _currentLocation = Storage.GetLocation();
-            ProductInStock productInStock = DatabaseControl.GetProductInStock(id, _currentLocation);
+            ProductInStock productInStock = DatabaseControl.GetProductInStock(id, _currentLocation, _context);
             if (quantity < 1 || quantity > productInStock.Max)
             {
                 return View("GetLocation", _currentLocation);
@@ -169,48 +169,48 @@ namespace P1.Controllers
         public IActionResult GetGuitarsFrom()
         {
             _currentLocation = Storage.GetLocation();
-            List<Product> guitars = DatabaseControl.FindProductsOfTypeFromStore("GUITAR", _currentLocation);
-            List<ProductInStock> guitarsInStock = DatabaseControl.GetProductsInStockAtLocation(guitars, _currentLocation);
+            List<Product> guitars = DatabaseControl.FindProductsOfTypeFromStore("GUITAR", _currentLocation, _context);
+            List<ProductInStock> guitarsInStock = DatabaseControl.GetProductsInStockAtLocation(guitars, _currentLocation, _context);
             return View(guitarsInStock);
         }
 
         public IActionResult GetBassFrom()
         {
             _currentLocation = Storage.GetLocation();
-            List<Product> bass = DatabaseControl.FindProductsOfTypeFromStore("BASS", _currentLocation);
-            List<ProductInStock> bassInStock = DatabaseControl.GetProductsInStockAtLocation(bass, _currentLocation);
+            List<Product> bass = DatabaseControl.FindProductsOfTypeFromStore("BASS", _currentLocation, _context);
+            List<ProductInStock> bassInStock = DatabaseControl.GetProductsInStockAtLocation(bass, _currentLocation, _context);
             return View(bassInStock);
         }
 
         public IActionResult GetPianosFrom()
         {
             _currentLocation = Storage.GetLocation();
-            List<Product> pianos = DatabaseControl.FindProductsOfTypeFromStore("PIANO", _currentLocation);
-            List<ProductInStock> pianosInStock = DatabaseControl.GetProductsInStockAtLocation(pianos, _currentLocation);
+            List<Product> pianos = DatabaseControl.FindProductsOfTypeFromStore("PIANO", _currentLocation, _context);
+            List<ProductInStock> pianosInStock = DatabaseControl.GetProductsInStockAtLocation(pianos, _currentLocation, _context);
             return View(pianosInStock);
         }
 
         public IActionResult GetDrumsFrom()
         {
             _currentLocation = Storage.GetLocation();
-            List<Product> drums = DatabaseControl.FindProductsOfTypeFromStore("DRUMS", _currentLocation);
-            List<ProductInStock> drumsInStock = DatabaseControl.GetProductsInStockAtLocation(drums, _currentLocation);
+            List<Product> drums = DatabaseControl.FindProductsOfTypeFromStore("DRUMS", _currentLocation, _context);
+            List<ProductInStock> drumsInStock = DatabaseControl.GetProductsInStockAtLocation(drums, _currentLocation, _context);
             return View(drumsInStock);
         }
 
         public IActionResult GetMicsFrom()
         {
             _currentLocation = Storage.GetLocation();
-            List<Product> mics = DatabaseControl.FindProductsOfTypeFromStore("MIC", _currentLocation);
-            List<ProductInStock> micsInStock = DatabaseControl.GetProductsInStockAtLocation(mics, _currentLocation);
+            List<Product> mics = DatabaseControl.FindProductsOfTypeFromStore("MIC", _currentLocation, _context);
+            List<ProductInStock> micsInStock = DatabaseControl.GetProductsInStockAtLocation(mics, _currentLocation, _context);
             return View(micsInStock);
         }
 
         public IActionResult GetAccessoriesFrom()
         {
             _currentLocation = Storage.GetLocation();
-            List<Product> accs = DatabaseControl.FindProductsOfTypeFromStore("ACC", _currentLocation);
-            List<ProductInStock> accsInStock = DatabaseControl.GetProductsInStockAtLocation(accs, _currentLocation);
+            List<Product> accs = DatabaseControl.FindProductsOfTypeFromStore("ACC", _currentLocation, _context);
+            List<ProductInStock> accsInStock = DatabaseControl.GetProductsInStockAtLocation(accs, _currentLocation, _context);
             return View(accsInStock);
         }
 

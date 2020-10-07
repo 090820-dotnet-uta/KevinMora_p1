@@ -17,7 +17,7 @@ namespace P1.Controllers
         public OrdersController(P1Context context)
         {
             _context = context;
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: Orders
@@ -29,7 +29,7 @@ namespace P1.Controllers
 
         public IActionResult ConfirmOrder()
         {
-            DatabaseControl.PlaceOrder(Storage.GetShoppingCart(), Storage.GetCardUsing(), Storage.WhatsTheAddy(), Storage.GetCustomer(), Storage.GetLocation());
+            DatabaseControl.PlaceOrder(Storage.GetShoppingCart(), Storage.GetCardUsing(), Storage.WhatsTheAddy(), Storage.GetCustomer(), Storage.GetLocation(), _context);
             ViewData["orderPlaced"] = "Your order has been placed! Click View Order to view your past orders.";
             Storage.CleanAfterOrder();
             return View("../Locations/GetLocation", Storage.GetLocation());
@@ -37,13 +37,13 @@ namespace P1.Controllers
 
         public IActionResult GetOrders()
         {
-            List<Order> orders = DatabaseControl.GetOrdersInfoFromLocation(Storage.GetLocation());
+            List<Order> orders = DatabaseControl.GetOrdersInfoFromLocation(Storage.GetLocation(), _context);
             return View("PastOrdersHere", orders);
         }
 
         public IActionResult GetPastOrders()
         {
-            List<Order> orders = DatabaseControl.GetPastOrdersFromCustomer(Storage.GetCustomer());
+            List<Order> orders = DatabaseControl.GetPastOrdersFromCustomer(Storage.GetCustomer(), _context);
             if (orders.Count == 0)
             {
                 return View("NoOrdersPlaced");
@@ -56,14 +56,14 @@ namespace P1.Controllers
 
         public IActionResult GetPastOrderDetails(int ID)
         {
-            Order o = DatabaseControl.GetOrder(ID, false);
+            Order o = DatabaseControl.GetOrder(ID, false, _context);
             return View("PastOrderDetails", o);
         }
 
         public IActionResult GetPastOrderDetailsHere(int ID)
         {
 
-            Order o = DatabaseControl.GetOrder(ID, true);
+            Order o = DatabaseControl.GetOrder(ID, true, _context);
             return View("PastOrderDetailsHere", o);
         }
 

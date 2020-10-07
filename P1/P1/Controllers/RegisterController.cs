@@ -24,7 +24,7 @@ namespace P1.Controllers
             _account = new UserAccount();
             _customer = new Customer();
             _cache = cache;
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
 
             if (!_cache.TryGetValue("account", out _account))
             {
@@ -56,7 +56,7 @@ namespace P1.Controllers
             }
             else
             {
-                if (DatabaseControl.AccountExists(account))
+                if (DatabaseControl.AccountExists(account, _context))
                 {
                     return RedirectToAction("UsernameTaken");
                 }
@@ -100,7 +100,7 @@ namespace P1.Controllers
             {
                 _customer = customer;
                 _account = (UserAccount)_cache.Get("account");
-                DatabaseControl.RegisterAccount(_account, _customer);
+                DatabaseControl.RegisterAccount(_account, _customer, _context);
                 Storage.SetCustomer(_customer);
                 return View("../CustomerHome/Index", _customer);
             }

@@ -17,7 +17,7 @@ namespace P1.Controllers
         public ProductsController(P1Context context)
         {
             _context = context;
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: Products
@@ -28,44 +28,44 @@ namespace P1.Controllers
 
         public IActionResult GetGuitars()
         {
-            List<Product> guitars = DatabaseControl.GetAllProductsOfType("GUITAR");
+            List<Product> guitars = DatabaseControl.GetAllProductsOfType("GUITAR", _context);
             return View(guitars);
         }
 
         public IActionResult GetBass()
         {
-            List<Product> bass = DatabaseControl.GetAllProductsOfType("BASS");
+            List<Product> bass = DatabaseControl.GetAllProductsOfType("BASS", _context);
             return View(bass);
         }
 
         public IActionResult GetPianos()
         {
-            List<Product> pianos = DatabaseControl.GetAllProductsOfType("PIANO");
+            List<Product> pianos = DatabaseControl.GetAllProductsOfType("PIANO", _context);
             return View(pianos);
         }
 
         public IActionResult GetDrums()
         {
-            List<Product> pianos = DatabaseControl.GetAllProductsOfType("DRUMS");
+            List<Product> pianos = DatabaseControl.GetAllProductsOfType("DRUMS", _context);
             return View(pianos);
         }
 
         public IActionResult GetMics()
         {
-            List<Product> mics = DatabaseControl.GetAllProductsOfType("MIC");
+            List<Product> mics = DatabaseControl.GetAllProductsOfType("MIC", _context);
             return View(mics);
         }
 
         public IActionResult GetAccessories()
         {
-            List<Product> accs = DatabaseControl.GetAllProductsOfType("ACC");
+            List<Product> accs = DatabaseControl.GetAllProductsOfType("ACC", _context);
             return View(accs);
         }
 
         public IActionResult FindLocationsWithProduct(int id)
         {
-            List<Location> storeOptions = DatabaseControl.FindLocationsWithProduct(id);
-            Product ProductToBuy = DatabaseControl.GetProduct(id);
+            List<Location> storeOptions = DatabaseControl.FindLocationsWithProduct(id, _context);
+            Product ProductToBuy = DatabaseControl.GetProduct(id, _context);
             Storage.SetProduct(ProductToBuy);
             ViewData["productName"] = ProductToBuy.Name;
             return View("StoreOptions", storeOptions);

@@ -15,5 +15,6 @@
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <ShowAllFiles>false</ShowAllFiles>
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_AccountLayout.cshtml</WebStackScaffolding_LayoutPageFile>
+    <NameOfLastUsedPublishProfile>MusicStoreCollective - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

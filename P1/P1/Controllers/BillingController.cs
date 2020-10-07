@@ -18,7 +18,7 @@ namespace P1.Controllers
         public BillingController(P1Context context)
         {
             _context = context;
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: Billing
@@ -70,9 +70,9 @@ namespace P1.Controllers
                 billing.ExpirationMonth = int.Parse(yearMonth.Substring(5));
                 billing.SecurityCode = int.Parse(security);
                 billing.AddressZipCode = zip;
-                DatabaseControl.AddNewCardInformationToUser(billing, Storage.GetCustomer());
-                DatabaseControl.AddNewShippingInformationToUser(billing, Storage.GetCustomer());
-                List<Billing> cardsOnFile = DatabaseControl.GetCardsOnFileForCustomer(Storage.GetCustomer());
+                DatabaseControl.AddNewCardInformationToUser(billing, Storage.GetCustomer(), _context);
+                DatabaseControl.AddNewShippingInformationToUser(billing, Storage.GetCustomer(), _context);
+                List<Billing> cardsOnFile = DatabaseControl.GetCardsOnFileForCustomer(Storage.GetCustomer(), _context);
                 return View("BillingOptions", cardsOnFile);
             }
             else
@@ -86,9 +86,9 @@ namespace P1.Controllers
 
         public IActionResult UseCard(int ID)
         {
-            Billing card = DatabaseControl.GetCard(ID);
+            Billing card = DatabaseControl.GetCard(ID, _context);
             Storage.SetCardUsing(card);
-            List<Shipping> addresses = DatabaseControl.GetShippingAddresssesOnFileForCustomer(Storage.GetCustomer());
+            List<Shipping> addresses = DatabaseControl.GetShippingAddresssesOnFileForCustomer(Storage.GetCustomer(), _context);
             return View("../Shipping/ShippingOptions", addresses);
         }
 

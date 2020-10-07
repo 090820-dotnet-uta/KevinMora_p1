@@ -497,8 +497,13 @@ C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.csprojAssemblyReference.cache
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.AssemblyInfoInputs.cache
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.AssemblyInfo.cs
-C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.csproj.CoreCompileInputs.cache
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.csproj.CopyComplete
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.dll
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.pdb
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.genruntimeconfig.cache
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.MusicStoreCollective - Web Deploy.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\MusicStoreCollective - Web Deploy\mssql1.arm.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\MusicStoreCollective - Web Deploy\profile.arm.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1_XUnitTesting\P1_xUnitTests\obj\Debug\netcoreapp3.1\P1_xUnitTests.csproj.CoreCompileInputs.cache

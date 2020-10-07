@@ -502,4 +502,7 @@ C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\obj\Debug\net
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\obj\Debug\netcoreapp3.1\Razor\Views\CustomerHome\CustomersWithName.cshtml.g.cs
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\obj\Debug\netcoreapp3.1\Razor\Views\CustomerHome\CustomerNotFound.cshtml.g.cs
 C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\obj\Debug\netcoreapp3.1\Razor\Views\Orders\NoOrdersPlaced.cshtml.g.cs
-C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\obj\Debug\netcoreapp3.1\P1.csprojAssemblyReference.cache
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.MusicStoreCollective - Web Deploy.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\MusicStoreCollective - Web Deploy\mssql1.arm.json
+C:\Users\kevinmora\Documents\REVATURE\Repositories\MoraKevin\P1\P1\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\MusicStoreCollective - Web Deploy\profile.arm.json

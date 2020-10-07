@@ -27,7 +27,7 @@ namespace P1.Controllers
             _context = context;
             _account = new UserAccount();
             _customer = new Customer();
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: Login/Details/5
@@ -62,12 +62,13 @@ namespace P1.Controllers
             return View("Index");
         }
 
+        [ValidateAntiForgeryToken]
         public IActionResult TryLogin(UserAccount account)
         {
-            if (DatabaseControl.LoginSuccesful(account)) 
+            if (DatabaseControl.LoginSuccesful(account, _context)) 
             {
                 _account = account;
-                _customer = DatabaseControl.GetCurrentCustomer(_account);
+                _customer = DatabaseControl.GetCurrentCustomer(_account, _context);
                 Storage.SetCustomer(_customer);
                 return View("../CustomerHome/Index", _customer);
             }

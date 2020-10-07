@@ -49,14 +49,14 @@ namespace P1
         public List<UserAccount> UserAccountsList { get; set; }
         public List<Product> ShoppingCart { get; set; }
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(connectionString);
                 base.OnConfiguring(optionsBuilder);
             }
-        }*/
+        }
 
         public DbSet<P1.Models.ProductInStock> ProductInStock { get; set; }
     }

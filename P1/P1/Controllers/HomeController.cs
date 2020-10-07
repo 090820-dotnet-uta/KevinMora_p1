@@ -16,7 +16,7 @@ namespace P1.Controllers
         public HomeController(ILogger<HomeController> logger, P1Context context)
         {
             _logger = logger;
-            DatabaseControl.SetContext(context);
+            /*DatabaseControl.SetContext(context);*/
         }
 
         public IActionResult Index()

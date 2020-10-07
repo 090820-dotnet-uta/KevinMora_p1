@@ -17,7 +17,7 @@ namespace P1.Controllers
         public ShippingController(P1Context context)
         {
             _context = context;
-            DatabaseControl.SetContext(_context);
+            /*DatabaseControl.SetContext(_context);*/
         }
 
         // GET: Shipping
@@ -62,8 +62,8 @@ namespace P1.Controllers
             {
                 shipping.AddressNum = int.Parse(num);
                 shipping.AddressZipCode = zip;
-                DatabaseControl.AddNewShippingInformationToUser(shipping, Storage.GetCustomer());
-                List<Shipping> shippingOptions = DatabaseControl.GetShippingAddresssesOnFileForCustomer(Storage.GetCustomer());
+                DatabaseControl.AddNewShippingInformationToUser(shipping, Storage.GetCustomer(), _context);
+                List<Shipping> shippingOptions = DatabaseControl.GetShippingAddresssesOnFileForCustomer(Storage.GetCustomer(), _context);
                 return View("ShippingOptions", shippingOptions);
             }
             else
@@ -75,7 +75,7 @@ namespace P1.Controllers
 
         public IActionResult ChooseAddress(int ID)
         {
-            Storage.SetAddy(DatabaseControl.GetAddress(ID));
+            Storage.SetAddy(DatabaseControl.GetAddress(ID, _context));
             Storage.SetOrderDetails();
             Order orderDetails = Storage.GetOrder();
             return View("../Orders/OrderDetails", orderDetails);
